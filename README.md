@@ -17,7 +17,7 @@ Railway management system is my ```CS219-Database Systems``` course project. In 
 
 ## Demo Screens
 ### Splash screen
-＜img src="https://github.com/ItzAmeerHamza/Railway-Management-System/assets/73628472/9d6bfd99-5ba0-4ed7-a080-c5be946d0725" width="500" height="300"＞
+![image](https://github.com/ItzAmeerHamza/Railway-Management-System/assets/73628472/9d6bfd99-5ba0-4ed7-a080-c5be946d0725)
 ![image](https://github.com/ItzAmeerHamza/Railway-Management-System/assets/73628472/c57606ca-4cc8-429c-bccc-16f98e60a429)
 
 ### Login screen
