@@ -12,7 +12,9 @@ namespace Railway_Management_System_Application
         public SqlConnection Connection;
         public void connection()
         {
-            Connection = new SqlConnection(@"Data Source=DESKTOP-3LA7J74\SQLEXPRESS;Initial Catalog=RailwaysDB;Integrated Security=True");
+            // This is the connection string, used to connect with any DBMS.
+            // It requires "Data Source Name" and "Catalog Name". Change the name according
+            Connection = new SqlConnection(@"Data Source=data_source_name;Initial Catalog=DB_name;Integrated Security=True");
             Connection.Open();
         }
     }
