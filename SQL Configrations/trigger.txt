@@ -1,0 +1,75 @@
+
+create trigger delcascadetrig 
+on titles
+
+for delete 
+as 
+delete titleauthor 
+from titleauthor,
+deleted 
+where titleauthor.title_id = deleted.title_id 
+/* Remove
+titleauthor rows that match deleted
+** (titles) rows.*/
+delete salesdetail 
+from salesdetail, deleted 
+where
+salesdetail.title_id = deleted.title_id 
+/* Remove salesdetail rows
+that match deleted
+** (titles) rows.*/ 
+delete roysched
+
+from roysched, deleted 
+where roysched.title_id =
+deleted.title_id 
+/* Remove roysched rows that match deleted
+**
+(titles) rows.*/ 
+
+
+create trigger
+cascade_utrig
+on titles
+for update as
+if
+update(title_id)
+begin
+     update titleauthor
+           set
+title_id = inserted.title_id
+           from titleauthor, deleted,
+inserted
+           where deleted.title_id = titleauthor.title_id
+
+   update roysched
+           set title_id = inserted.title_id
+
+      from roysched, deleted, inserted
+           where
+deleted.title_id = roysched.title_id
+     update salesdetail
+
+    set title_id = inserted.title_id
+           from salesdetail,
+deleted, inserted
+           where deleted.title_id =
+salesdetail.title_id
+end
+
+
+create or replace trigger section_timeslot_trg 
+before insert or update on section
+for each row
+declare
+    l_id timeslot.timeslot_id%type;
+begin
+    select ts.timeslot_id
+    into l_id
+    from timeslot ts
+    where ts.timeslot_id = :new.timeslot_id;
+exception
+    when no_data_found then
+        raise_application_error(-20999, 'Not a valid TIMESLOT_ID: '||:new.timeslot_id);
+end;
+
